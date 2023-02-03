@@ -10,7 +10,7 @@
 //---------------------------------
 // const models = require('../models/models');
 
-exports.landing = (request,res) => {
+exports.landing = () => {
   console.log('hi give me your name and password !');
 }
 
@@ -19,8 +19,7 @@ exports.input = (request,res) => {
   var namee = request.body.name;
   console.log(namee);
   var password = request.body.password ;
-
-  console.log(namee);
+  console.log(password);
   res.send("got your name and password!");
 }
 
