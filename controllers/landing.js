@@ -8,21 +8,20 @@
 //   res.redirect('/');
 // };
 //---------------------------------
-const models = require('../models/models');
-
-
+// const models = require('../models/models');
 
 exports.landing = (request,res) => {
-  console.log('hi give me your name and password !')
-
+  console.log('hi give me your name and password !');
 }
 
 exports.input = (request,res) => {
+  console.log('hi!');
   var namee = request.body.name;
-  var password = request.body.password;
+  console.log(namee);
+  var password = request.body.password ;
 
   console.log(namee);
-  res.send("got your name and password!") 
+  res.send("got your name and password!");
 }
 
 
