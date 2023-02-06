@@ -21,9 +21,47 @@ exports.input = (request,res) => {
   var password = request.body.password ;
   console.log(password);
   res.send("got your name and password!");
+  var Person = require('../models/models')
+  const firstPerson = new Person ({
+    name : namee,
+    password : password
+  });
+  firstPerson
+    .save()
+    .then(() => {
+        console.log('new person saved');
+    })
+    .catch(error => {
+        console.log('ERROR', error);
+    });
+    
+
+  
   }
 
+  exports.findperson = (request,res) => {
+    res.send("git it!");
+    var requestinput = request.body.input;
 
+    console.log("you entered :" ,requestinput);
+    var Person = require('../models/models')
+
+    Person.find({
+      $or: [
+        { name: requestinput },
+        { password: requestinput }
+      ]
+    }, (error, docs) => {
+      if (error) {
+        console.log('error');
+      } else {
+        console.log("the person you look for: ", docs);
+      }
+    });
+    
+
+  }
+  
 
 
 

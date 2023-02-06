@@ -22,10 +22,18 @@ mongoose.connect( DB , {
     // useFindAndModify : false
 }).then(con =>{
     console.log(con.connection);
-    console.log('connection succesful')
+    console.log('connection succesful');
+    app.listen(port, host, () => {
+        console.log(`Server is running on http://${host}:${port}`);
+    });
 });
 
-app.listen(port, host, () => {
-    console.log(`Server is running on http://${host}:${port}`);
 
-});
+
+
+
+
+
+
+
+
