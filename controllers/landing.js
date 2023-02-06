@@ -43,20 +43,16 @@ exports.input = (request,res) => {
 
   exports.findvault = (request,res) => {
     var requestinput = request.body.url;
-
-    console.log("you want the content for vault :" ,requestinput);
     var Vault = require('../models/models')
     Vault.find({
       url : requestinput 
-      // $or: [
-      //   { data: requestinput },
-      //   { password: requestinput }
-      // ]
-    }, (error, docs) => {
+    }, 
+    
+    (error, docs) => {
       if (error) {
         console.log('error');
       } else {
-        console.log(" the content in the data you look for: ", docs);
+        res.send(docs[0].data);
       }
     });
   }
