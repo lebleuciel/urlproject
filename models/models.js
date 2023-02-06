@@ -9,5 +9,5 @@ const VaultSchema = new mongoose.Schema({
     }
 });
 
-const vault = new mongoose.model('vault' , data);
-module.exports = vault ;
+const Vault = new mongoose.model('Vault' , VaultSchema);
+module.exports = Vault ;

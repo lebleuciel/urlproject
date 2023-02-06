@@ -17,10 +17,8 @@ exports.landing = () => {
 exports.input = (request,res) => {
   var yourdata = request.body.data;
   console.log(yourdata);
-  res.send("heres ur url");
-
   var Vault = require('../models/models')
-  const firstVault = new Vault ({
+  var firstVault = new Vault ({
     data : yourdata
     });
   firstVault
@@ -31,9 +29,12 @@ exports.input = (request,res) => {
     .catch(error => {
         console.log('ERROR', error);
     });
-    
-
-  
+    var newurl = "127.0.0.1:"+yourdata;
+    var response = {
+      message: "heres ur url",
+      url: newurl
+    };
+    res.status(200).send(response);
   }
 
   exports.findvault = (request,res) => {
@@ -41,9 +42,9 @@ exports.input = (request,res) => {
     var requestinput = request.body.data;
 
     console.log("you entered :" ,requestinput);
-    var vault = require('../models/models')
+    var Vault = require('../models/models')
 
-    vault.find({
+    Vault.find({
       data : requestinput 
       // $or: [
       //   { data: requestinput },

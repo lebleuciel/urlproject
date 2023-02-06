@@ -21,7 +21,7 @@ mongoose.connect( DB , {
     // useCreateIndex : true,
     // useFindAndModify : false
 }).then(con =>{
-    console.log(con.connection);
+    // console.log(con.connection);
     console.log('connection succesful');
     app.listen(port, host, () => {
         console.log(`Server is running on http://${host}:${port}`);
