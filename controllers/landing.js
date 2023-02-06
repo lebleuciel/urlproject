@@ -18,11 +18,15 @@ exports.input = (request,res) => {
   var yourdata = request.body.data;
   console.log(yourdata);
   var Vault = require('../models/models')
-  var newurl = "http://localhost:8000/"+yourdata;
+
+  var routerdata = "/"+yourdata ;
+  var newurl = "http://localhost:8000/"+yourdata ;
   var response = {
     message: "heres ur url",
     url: newurl
   };
+
+
   var firstVault = new Vault ({
     data : yourdata,
     url : newurl
@@ -37,8 +41,6 @@ exports.input = (request,res) => {
     });
     res.status(200).send(response);
   }
-
-
 
 
   exports.findvault = (request,res) => {
@@ -58,8 +60,21 @@ exports.input = (request,res) => {
   }
   
 
-
-
+exports.showvault = (request,res) => {
+  console.log("you made it");
+  var requestinput = request.url;
+  var Vault = require('../models/models')
+  Vault.find({
+    url : requestinput 
+  }, 
+  
+  (error, docs) => {
+    if (error) {
+      console.log('error');
+    } else {
+      res.send(docs[0].data);
+    }
+  });}
 
 
 
