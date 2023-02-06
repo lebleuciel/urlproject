@@ -18,8 +18,14 @@ exports.input = (request,res) => {
   var yourdata = request.body.data;
   console.log(yourdata);
   var Vault = require('../models/models')
+  var newurl = "http://localhost:8000/"+yourdata;
+  var response = {
+    message: "heres ur url",
+    url: newurl
+  };
   var firstVault = new Vault ({
-    data : yourdata
+    data : yourdata,
+    url : newurl
     });
   firstVault
     .save()
@@ -29,23 +35,19 @@ exports.input = (request,res) => {
     .catch(error => {
         console.log('ERROR', error);
     });
-    var newurl = "127.0.0.1:"+yourdata;
-    var response = {
-      message: "heres ur url",
-      url: newurl
-    };
     res.status(200).send(response);
   }
 
+
+
+
   exports.findvault = (request,res) => {
-    res.send("got it!");
-    var requestinput = request.body.data;
+    var requestinput = request.body.url;
 
-    console.log("you entered :" ,requestinput);
+    console.log("you want the content for vault :" ,requestinput);
     var Vault = require('../models/models')
-
     Vault.find({
-      data : requestinput 
+      url : requestinput 
       // $or: [
       //   { data: requestinput },
       //   { password: requestinput }
@@ -54,7 +56,7 @@ exports.input = (request,res) => {
       if (error) {
         console.log('error');
       } else {
-        console.log(" the person you look for: ", docs);
+        console.log(" the content in the data you look for: ", docs);
       }
     });
   }
