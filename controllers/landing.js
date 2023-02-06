@@ -11,25 +11,22 @@
 // const models = require('../models/models');
 
 exports.landing = () => {
-  console.log('hi give me your name and password !');
+  console.log('hi from landing!');
 }
 
 exports.input = (request,res) => {
-  console.log('hi!');
-  var namee = request.body.name;
-  console.log(namee);
-  var password = request.body.password ;
-  console.log(password);
-  res.send("got your name and password!");
-  var Person = require('../models/models')
-  const firstPerson = new Person ({
-    name : namee,
-    password : password
-  });
-  firstPerson
+  var yourdata = request.body.data;
+  console.log(yourdata);
+  res.send("heres ur url");
+
+  var Vault = require('../models/models')
+  const firstVault = new Vault ({
+    data : yourdata
+    });
+  firstVault
     .save()
     .then(() => {
-        console.log('new person saved');
+        console.log('new vault saved');
     })
     .catch(error => {
         console.log('ERROR', error);
@@ -39,27 +36,26 @@ exports.input = (request,res) => {
   
   }
 
-  exports.findperson = (request,res) => {
-    res.send("git it!");
-    var requestinput = request.body.input;
+  exports.findvault = (request,res) => {
+    res.send("got it!");
+    var requestinput = request.body.data;
 
     console.log("you entered :" ,requestinput);
-    var Person = require('../models/models')
+    var vault = require('../models/models')
 
-    Person.find({
-      $or: [
-        { name: requestinput },
-        { password: requestinput }
-      ]
+    vault.find({
+      data : requestinput 
+      // $or: [
+      //   { data: requestinput },
+      //   { password: requestinput }
+      // ]
     }, (error, docs) => {
       if (error) {
         console.log('error');
       } else {
-        console.log("the person you look for: ", docs);
+        console.log(" the person you look for: ", docs);
       }
     });
-    
-
   }
   
 

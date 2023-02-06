@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
 
 
-const personSchema = new mongoose.Schema({
-    name : {
+const VaultSchema = new mongoose.Schema({
+    data : {
         type : String,
-        required : [true,'a person must have a name'],
+        required : [true,'you should enter data'],
         unique : false
-    },
-    password : {
-        type : String,
-        required : true ,
     }
 });
 
-const Person = new mongoose.model('Person' , personSchema);
-module.exports = Person ;
+const vault = new mongoose.model('vault' , data);
+module.exports = vault ;

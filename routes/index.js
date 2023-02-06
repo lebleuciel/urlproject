@@ -6,7 +6,7 @@ const controllers = require('../controllers/landing');
 
 router.get('/', controllers.landing);
 router.post('/', controllers.input);
-router.post('/findperson',controllers.findperson);
+router.post('/findvault',controllers.findvault);
 
 
 
