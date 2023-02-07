@@ -18,8 +18,6 @@ exports.input = (request,res) => {
   var yourdata = request.body.data;
   console.log(yourdata);
   var Vault = require('../models/models')
-
-  var routerdata = "/"+yourdata ;
   var newurl = "http://localhost:8000/"+yourdata ;
   var response = {
     message: "heres ur url",
@@ -62,10 +60,11 @@ exports.input = (request,res) => {
 
 exports.showvault = (request,res) => {
   console.log("you made it");
-  var requestinput = request.url;
+  var requesturl = "http://localhost:8000"+ request.url;
+  console.log(requesturl)
   var Vault = require('../models/models')
   Vault.find({
-    url : requestinput 
+    url : requesturl
   }, 
   
   (error, docs) => {
