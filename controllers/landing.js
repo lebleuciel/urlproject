@@ -1,14 +1,34 @@
 
-// exports.get_landing = function(req, res) {
-//     res.render('landing', { title: 'url' });
-//   };
+var multer = require('multer');
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
+const fs = require('fs');
 
-// exports.submit_lead = function(req, res, next) {
-//   console.log("url lead:" , req.body.submit_email);
-//   res.redirect('/');
-// };
-//---------------------------------
-// const models = require('../models/models');
+exports.UploadImage = (request, res) => {
+  var Vault = require('../models/models');
+  var url = request.body.url;
+  var path = request.body.path;
+
+  fs.readFile(path, (err, data) => {
+    if (err) throw err;
+    const image = Buffer.from(data).toString("binary");
+    const imageDocument = { image };
+  });
+  Vault.updateOne({
+    url: url
+  }, {
+    $set: {
+      image: image
+    }
+  }, (error, docs) => {
+    if (error) {
+      console.log('error');
+    } else {
+      console.log('image added');
+    }
+  });
+};
+
 
 exports.landing = () => {
   console.log('hi from landing!');
@@ -66,7 +86,6 @@ exports.showvault = (request,res) => {
   Vault.find({
     url : requesturl
   }, 
-  
   (error, docs) => {
     if (error) {
       console.log('error');
