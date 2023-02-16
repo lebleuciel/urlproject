@@ -8,11 +8,13 @@ exports.UploadImage = (request, res) => {
   var Vault = require('../models/models');
   var url = request.body.url;
   var path = request.body.path;
+  var image = "";
+  var imageDocument = "";
 
   fs.readFile(path, (err, data) => {
     if (err) throw err;
-    const image = Buffer.from(data).toString("binary");
-    const imageDocument = { image };
+    image = Buffer.from(data).toString("binary");
+    imageDocument = { image };
   });
   Vault.updateOne({
     url: url
@@ -90,7 +92,7 @@ exports.showvault = (request,res) => {
     if (error) {
       console.log('error');
     } else {
-      res.send(docs[0].data);
+      res.send(docs[1].data);
     }
   });}
 

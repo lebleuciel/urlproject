@@ -19,7 +19,7 @@ const VaultSchema = new mongoose.Schema({
     },
     image : {
         type : Buffer ,
-        required : false,
+        required : [false,'you can add later'],
         unique :false
     }
 });
